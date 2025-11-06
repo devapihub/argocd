@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notification-service-ingress
+  namespace: notification
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "10s"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120s"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120s"
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+spec:
+  ingressClassName: nginx-application
+  rules:
+    - host: www.devapihub.com
+      http:
+        paths:
+          - path: /notification-service
+            pathType: Prefix
+            backend:
+              service:
+                name: notification-service
+                port:
+                  number: 8081
