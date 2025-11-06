@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: notification
-          image: trivip002/notification-service:7e2182d
+          image: trivip002/notification-service:1f363cc
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
