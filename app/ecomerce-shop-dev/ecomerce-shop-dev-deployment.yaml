@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecomerce-shop-dev-deployment
+  namespace: ecomerce-shop-dev
+  labels: {app: ecomerce-shop-dev}
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector: {matchLabels: {app: ecomerce-shop-dev}}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxSurge: 1, maxUnavailable: 0}
+  template:
+    metadata:
+      labels: {app: ecomerce-shop-dev}
+    spec:
+      containers:
+        - name: ecomerce-shop-dev
+          image: trivip002/ecomerce-shop-dev:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          resources:
+            requests: {cpu: "200m", memory: "512Mi"}
+            limits: {memory: "1Gi"}
