@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ecomerce-shop-dev
-          image: trivip002/ecomerce-shop-dev:dc100cc76b67f3d7ea7b5bc3f8c0b58b6ecbe8fa
+          image: trivip002/ecomerce-shop-dev:b902faf67deffca5773ba45d5729409508dc40d2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
