@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomerce-shop-dev-service
+  namespace: ecomerce-shop-dev
+  labels: { app: ecomerce-shop-dev }
+spec:
+  type: ClusterIP
+  selector: { app: ecomerce-shop-dev }
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
