@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ecomerce-shop-dev
-          image: trivip002/ecomerce-shop-dev:a091f9340b0e2b338f8bf1b37a56f4d12356efa5
+          image: trivip002/ecomerce-shop-dev:498367f6416411bd0072a2155d040beb0280bfda
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -28,7 +28,6 @@ spec:
               value: "false"
             - name: NODE_ENV
               value: "production"
-
             - name: PROD_DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -39,7 +38,6 @@ spec:
                 secretKeyRef:
                   name: ecomerce-shop-dev-db
                   key: PROD_DB_PASSWORD
-
           resources:
             requests: {cpu: "200m", memory: "512Mi"}
             limits: {memory: "1Gi"}
