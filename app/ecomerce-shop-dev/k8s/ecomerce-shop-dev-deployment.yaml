@@ -21,6 +21,25 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: ENABLE_HEALTH_CHECK_LOGS
+              value: "false"
+            - name: NODE_ENV
+              value: "production"
+
+            - name: PROD_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ecomerce-shop-dev-db
+                  key: PROD_DB_USERNAME
+            - name: PROD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ecomerce-shop-dev-db
+                  key: PROD_DB_PASSWORD
+
           resources:
             requests: {cpu: "200m", memory: "512Mi"}
             limits: {memory: "1Gi"}
