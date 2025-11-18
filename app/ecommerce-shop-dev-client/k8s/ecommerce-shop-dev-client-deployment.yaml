@@ -3,41 +3,41 @@ kind: Deployment
 metadata:
   name: ecommerce-shop-dev-client-deployment
   namespace: ecommerce-shop-dev-client
-  labels: { app: ecommerce-shop-dev-client }
+  labels: {app: ecommerce-shop-dev-client}
 spec:
   replicas: 1
   revisionHistoryLimit: 3
-  selector: { matchLabels: { app: ecommerce-shop-dev-client } }
+  selector: {matchLabels: {app: ecommerce-shop-dev-client}}
   strategy:
     type: RollingUpdate
-    rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
+    rollingUpdate: {maxSurge: 1, maxUnavailable: 0}
   template:
     metadata:
-      labels: { app: ecommerce-shop-dev-client }
+      labels: {app: ecommerce-shop-dev-client}
     spec:
       containers:
         - name: ecommerce-shop-dev-client
-          image: trivip002/ecommerce-shop-dev-client:1.0.0
+          image: trivip002/ecommerce-shop-dev-client:d5139f6b683649197f00337e2967fe5ece413f53
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5200
           resources:
-            requests: { cpu: "100m", memory: "256Mi" }
-            limits:   { memory: "512Mi" }
+            requests: {cpu: "100m", memory: "256Mi"}
+            limits: {memory: "512Mi"}
           readinessProbe:
-            httpGet: { path: /, port: 5200 }
+            httpGet: {path: /, port: 5200}
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 2
           livenessProbe:
-            httpGet: { path: /, port: 5200 }
+            httpGet: {path: /, port: 5200}
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 2
           startupProbe:
-            tcpSocket: { port: 5200 }
+            tcpSocket: {port: 5200}
             periodSeconds: 5
             failureThreshold: 60
           lifecycle:
             preStop:
-              exec: { command: ["/bin/sh","-lc","sleep 5"] }
+              exec: {command: ["/bin/sh", "-lc", "sleep 5"]}
