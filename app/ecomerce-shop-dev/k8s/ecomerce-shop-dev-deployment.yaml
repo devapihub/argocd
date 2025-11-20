@@ -28,6 +28,8 @@ spec:
               value: "false"
             - name: NODE_ENV
               value: "production"
+            - name: GOOGLE_CLIENT_ID
+              value: "459088566498-5ll4mhum5clitrtrvt98lbeksoble3nl.apps.googleusercontent.com"
             - name: PROD_DB_USERNAME
               valueFrom:
                 secretKeyRef:
