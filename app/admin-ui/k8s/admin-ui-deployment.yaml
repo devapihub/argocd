@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: admin-ui
-          image: trivip002/admin-ui:20260424183022-9ea6514
+          image: trivip002/admin-ui:20260424183412-8b8e168
           imagePullPolicy: Always
           ports:
             - containerPort: 80
