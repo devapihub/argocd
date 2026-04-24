@@ -1,18 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: notification-ingress
-  namespace: notification
+  name: admin-ui-ingress
+  namespace: admin-ui
 spec:
   ingressClassName: nginx
   rules:
-    - host: www.devapihub.com
+    - host: devshop.it.com
       http:
         paths:
-          - path: /notification-service
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: notification-service
+                name: admin-ui
                 port:
-                  number: 8081
+                  number: 80

@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec:
-  ingressClassName: nginx-application
+  ingressClassName: nginx
   rules:
     - host: www.devapihub.com
       http:
