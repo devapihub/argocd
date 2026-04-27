@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: admin-api
-          image: trivip002/admin-api:2302fd8
+          image: trivip002/admin-api:b34474b
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
