@@ -17,10 +17,21 @@ spec:
     spec:
       containers:
         - name: admin-api
-          image: trivip002/admin-api:8f2f5d6
+          image: trivip002/admin-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: admin-api-secret
+                  key: JWT_SECRET
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: admin-api-secret
+                  key: MONGODB_URI
           resources:
             requests: {cpu: "200m", memory: "512Mi"}
             limits: {memory: "1Gi"}
