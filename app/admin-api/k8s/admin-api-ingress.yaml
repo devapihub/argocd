@@ -10,8 +10,13 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
     nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
     nginx.ingress.kubernetes.io/service-upstream: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - www.devapihub.com
+      secretName: www-devapihub-com-tls
   rules:
     - host: www.devapihub.com
       http:
