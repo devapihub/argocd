@@ -71,6 +71,42 @@ kubectl wait --namespace cert-manager --for=condition=ready pod \
 kubectl apply -f cluster-issuer.yaml
 ```
 
+### Certificate expiry & renewal
+
+Let's Encrypt certificates expire after **90 days**. cert-manager **auto-renews at 30 days before expiry** — no manual action needed under normal conditions.
+
+Check certificate status and expiry date:
+
+```bash
+# List all certificates and their ready status
+kubectl get certificate -A
+
+# Check expiry date of a specific cert
+kubectl get certificate www-devapihub-com-tls -n ecomerce-shop-dev \
+  -o jsonpath='{.status.notAfter}'
+```
+
+If a certificate is stuck or not renewing (Status = False):
+
+```bash
+# 1. Check what went wrong
+kubectl describe certificate www-devapihub-com-tls -n ecomerce-shop-dev
+kubectl describe certificaterequest -n ecomerce-shop-dev
+kubectl describe challenge -n ecomerce-shop-dev
+
+# 2. Force renew by deleting the TLS secret — cert-manager will recreate it
+kubectl delete secret www-devapihub-com-tls -n ecomerce-shop-dev
+
+# 3. Verify ClusterIssuer is still Ready
+kubectl describe clusterissuer letsencrypt-prod
+```
+
+If ClusterIssuer is not Ready (e.g. after cluster rebuild), reapply it:
+
+```bash
+kubectl apply -f cluster-issuer.yaml
+```
+
 ## Key Conventions
 
 - Each service lives in its own namespace matching the app name.
