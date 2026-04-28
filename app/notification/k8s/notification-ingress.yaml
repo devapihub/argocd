@@ -3,8 +3,14 @@ kind: Ingress
 metadata:
   name: notification-ingress
   namespace: notification
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - www.devapihub.com
+      secretName: www-devapihub-com-tls
   rules:
     - host: www.devapihub.com
       http:
