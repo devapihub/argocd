@@ -32,6 +32,22 @@ spec:
                 secretKeyRef:
                   name: admin-api-secret
                   key: MONGODB_URI
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: admin-api-secret
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: admin-api-secret
+                  key: GOOGLE_CLIENT_SECRET
+            - name: GOOGLE_REDIRECT_URI
+              value: "https://www.devapihub.com/api/login/oauth2/code/google"
+            - name: FRONTEND_REDIRECT_URI
+              value: "https://devshop.it.com/oauth2/callback"
+            - name: JWT_EXPIRATION_MS
+              value: "86400000"
           resources:
             requests: {cpu: "200m", memory: "512Mi"}
             limits: {memory: "1Gi"}
