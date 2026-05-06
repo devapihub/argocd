@@ -5,7 +5,7 @@ metadata:
   namespace: admin-api
   labels: {app: admin-api}
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   selector: {matchLabels: {app: admin-api}}
   strategy:
